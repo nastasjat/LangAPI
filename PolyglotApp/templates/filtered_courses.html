@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Підключення Bootstrap з CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script src="{% static 'script.js' %}"></script>
+
+    <title>Main page</title>
+</head>
+
+<body>
+    <div class="curses__part1">
+        <div class="logo_menue">
+            <div class="logo"><img src="{% static 'img/logo1.png' %}" alt="logo1"></div>
+            <div class="menu" onclick="toggleMenu()">
+                <img src="{% static 'img/menue.png' %}" alt="menue_icon" class="menu-icon">
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <a href="{% url 'index' %}">Головна</a>
+                    <a href="{% url 'index' %}">Формула успіху</a>
+                    <a href="{% url 'index' %}">Викладачі</a>
+                    <a href="{% url 'index2' %}">Програми навчання</a>
+                    <a href="{% url 'index' %}">Поширені запитання</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="curses__part2">
+        <div class="title3">Доступні курси</div>
+    </div>
+
+    <div class="curses filtered-courses">
+        <div class="curses__part5">
+            <div id="curses_block_container">
+                <div class="subtitle1 mt-2">
+                    {{ selected_language.name }} мова</div>
+                {% if courses %}
+                {% for course in courses %}
+                <div class="curses_block mt-1 mb-5">
+                    <div class="block1_1 mt-0 mb-0">
+                        <div class="block__title">{{ course.name }}</div>
+                        <div class="block__text">
+                            <ul>
+                                {% if course.type == "Груповий" %}
+                                <li>{{ course.number_of_lessons }} заняття в групі</li>
+                                {% elif course.type == "Індивідуальний" %}
+                                <li>{{ course.number_of_lessons }} індивідуальних занять</li>
+                                {% endif %}
+                                <li>
+                                    {{ course.number_of_hours_with_native }}
+                                    {{ course.hours_text }} розмов з носіями мови
+                                </li>
+                                <li>{{ course.duration_in_weeks }} тижнів навчання</li>
+                                {% if course.type == "Груповий" %}
+                                <li>вибір зручного розкладу</li>
+                                {% elif course.type == "Індивідуальний" %}
+                                <li>індивідульний план навчання</li>
+                                {% endif %}
+                                <li>рівень: {{ course.level }}</li>
+                            </ul>
+                        </div>
+                        <div class="block__price">{{ course.price }} грн</div>
+                        <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="subtitle1">Не знайдено курсів за фільтрами</div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="part6">
+        <div class="logo"><img src="{% static 'img/Logo2.png' %}" alt="logo2"></div>
+        <div class="networks">
+            <div class="mail">
+                <div class="mail_icon"><img src="{%  static 'img/🦆 icon _email_.png' %}" alt="mail"></div>
+                poliglot@gmail.com
+            </div>
+            <div class="tg">
+                <div class="tg_icon"><img src="{%  static 'img/icons8-telegram 1.png' %}" alt="tg"></div>
+                poliglot.tg
+            </div>
+        </div>
+    </div>
+</body>

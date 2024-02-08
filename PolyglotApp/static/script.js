@@ -65,3 +65,32 @@ function closePopup() {
   var popup = document.getElementById("popup");
   popup.style.display = "none";
 }
+
+//filter courses 
+function filterCourses() {
+    // Collect filter options
+    var language = $("#dropdown_language").val();
+    var price_from = $("#userInputFrom").val();
+    var price_to = $("#userInputTo").val();
+    var language_level = $("input[name='level']:checked").val();
+
+    // Send AJAX request
+    $.ajax({
+        url: "/filtered_courses/",  // Update with your actual URL
+        type: "POST",
+        data: {
+            language: language,
+            price_from: price_from,
+            price_to: price_to,
+            language_level: language_level,
+            csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(),  // Include CSRF token
+        },
+        success: function (data) {
+            // Update the container with filtered courses
+            $("#curses_block_container").html(data);
+        },
+        error: function () {
+            alert("Error occurred during filtering.");
+        },
+    });
+}

@@ -1,10 +1,13 @@
 from django.shortcuts import render
+from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
+from django.http import HttpResponse
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
+from django.db.models import Q
 
 from PolyglotApp.models import (
     Language,
@@ -34,6 +37,53 @@ def index2(request):
 
 def index3(request):
     return render(request, "index3.html")
+
+
+# A helper function to get the appropriate text for hours
+def get_hours_text(num_hours):
+    if num_hours == 1:
+        return "година"
+    elif 2 <= num_hours <= 4:
+        return "години"
+    else:
+        return "годин"
+
+
+def filtered_courses(request):
+    if request.method == "POST":
+        language = request.POST.get("language")
+        price_from = request.POST.get("price_from")
+        price_to = request.POST.get("price_to")
+        language_level = request.POST.get("level")
+
+        # Build filter conditions dynamically
+        filter_conditions = Q()
+        if language:
+            filter_conditions &= Q(language_course__language__name=language)
+        if price_from:
+            filter_conditions &= Q(price__gte=int(price_from))
+        if price_to:
+            filter_conditions &= Q(price__lte=int(price_to))
+        if language_level:
+            filter_conditions &= Q(level=language_level)
+
+        filtered_courses = Course.objects.filter(filter_conditions)
+
+        for course in filtered_courses:
+            course.hours_text = get_hours_text(course.number_of_hours_with_native)
+
+        # Pass the selected language to the template
+        selected_language = Language.objects.filter(name=language).first()
+        return render(
+            request,
+            "filtered_courses.html",
+            {
+                "courses": filtered_courses,
+                "selected_language": selected_language,
+            },
+        )
+
+    return render(request, "filtered_courses.html", {"courses": []})
 
 
 @csrf_exempt

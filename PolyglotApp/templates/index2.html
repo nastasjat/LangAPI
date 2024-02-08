@@ -43,440 +43,441 @@
                 <div class="filter" onclick="showPopup()">Фільтрувати</div>
 
                 <div class="popup" id="popup">
-                    <div class="popup-content">
-                        <!-- Ваші блоки для вікна -->
-                        <div class="filter-option">
-                            <div class="filter_title">Ціна</div>
-                            <div class="filter_main1">
-                                <label class="lbl" for="userInput">Від</label>
-                                <input class="inpt" type="text" id="userInput" onkeydown="checkEnter(event)">
-                                <label class="lbl" for="userInput">до</label>
-                                <input class="inpt" type="text" id="userInput" onkeydown="checkEnter(event)">
+                    <form method="post" action="{% url 'filtered_courses' %}">
+                        {% csrf_token %}
+                        <div class="popup-content">
+                            <!-- Ваші блоки для вікна -->
+                            <div class="filter-option">
+                                <div class="filter_title">Ціна</div>
+                                <div class="filter_main1">
+                                    <label class="lbl" for="userInput">Від</label>
+                                    <input class="inpt" type="text" name="price_from" id="userInputFrom"
+                                        onkeydown="checkEnter(event)">
+                                    <label class="lbl" for="userInput">до</label>
+                                    <input class="inpt" type="text" name="price_to" id="userInputTo"
+                                        onkeydown="checkEnter(event)">
+                                </div>
                             </div>
-                        </div>
-                        <div class="filter-option">
-                            <div class="filter_title">Мова</div>
-                            <div class="filter_main2">
-                                <select id="dropdown" onchange="updateField()">
-                                    <option value="option1">Англійська</option>
-                                    <option value="option2">Польська</option>
-                                    <option value="option3">Французька</option>
-                                    <option value="option4">Китайська</option>
-                                    <option value="option5">Німецька</option>
-                                </select>
+                            <div class="filter-option">
+                                <div class="filter_title">Мова</div>
+                                <div class="filter_main2">
+                                    <select name="language" id="dropdown_language" onchange="updateField()">
+                                        <option value="Англійська">Англійська</option>
+                                        <option value="Польська">Польська</option>
+                                        <option value="Французька">Французька</option>
+                                        <option value="Китайська">Китайська</option>
+                                        <option value="Німецька">Німецька</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="filter-option">
-                            <div class="filter_title">Рівень мови</div>
-                            <div class="filter_main3">
-                                <form>
-                                    <label class="lbl2">
-                                        <input type="radio" name="level" value="A1"> A1
-                                    </label>
-                                    <label class="lbl2">
-                                        <input type="radio" name="level" value="A2"> A2
-                                    </label>
-                                    <label class="lbl2">
-                                        <input type="radio" name="level" value="В1"> В1
-                                    </label>
-                                    <label class="lbl2">
-                                        <input type="radio" name="level" value="В2"> В2
-                                    </label>
-                                    <label class="lbl2">
-                                        <input type="radio" name="level" value="С1"> С1
-                                    </label>
+                            <div class="filter-option">
+                                <div class="filter_title">Рівень мови</div>
+                                <div class="filter_main3">
+                                    <form>
+                                        <label class="lbl2">
+                                            <input type="radio" name="level" value="A1"> A1
+                                        </label>
+                                        <label class="lbl2">
+                                            <input type="radio" name="level" value="A2"> A2
+                                        </label>
+                                        <label class="lbl2">
+                                            <input type="radio" name="level" value="В1"> В1
+                                        </label>
+                                        <label class="lbl2">
+                                            <input type="radio" name="level" value="В2"> В2
+                                        </label>
+                                        <label class="lbl2">
+                                            <input type="radio" name="level" value="С1"> С1
+                                        </label>
 
-                                </form>
-
+                                    </form>
 
 
-                            </div>
-                        </div>
 
-                        <button class="but2">Фільтрувати</button>
-                        <!-- Кінець блоків -->
-                        <span class="close" onclick="closePopup()">&times;</span>
+                                </div>
+                    </form>
+                </div>
+
+                <button class="but2" onclick="filterCourses()">Фільтрувати</button>
+                <!-- Кінець блоків -->
+                <span class="close" onclick="closePopup()">&times;</span>
+            </div>
+        </div>
+
+
+        <div class="subtitle1">Англійська мова</div>
+        <div class="curses_block">
+
+            <div class="curses_block1">
+
+                <div class="block1_1">
+
+                    <div class="block__title">Стандарт</div>
+                    <div class="block__text">
+                        <ul>
+                            <li> 24 заняття в групі</li>
+                            <li> 4 години розмов з носіями мови</li>
+                            <li> 3 місяці</li>
+                            <li> вибір зручного розкладу</li>
+                            <li> рівні А1, A2, B1, B2, C1</li>
+                        </ul>
                     </div>
+                    <div class="block__price">6 000 грн</div>
+                    <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
                 </div>
 
 
-                <div class="subtitle1">Англійська мова</div>
-
-
-                <div class="curses_block">
-
-                    <div class="curses_block1">
-
-                        <div class="block1_1">
-
-                            <div class="block__title">Стандарт</div>
-                            <div class="block__text">
-                                <ul>
-                                    <li> 24 заняття в групі</li>
-                                    <li> 4 години розмов з носіями мови</li>
-                                    <li> 3 місяці</li>
-                                    <li> вибір зручного розкладу</li>
-                                    <li> рівні А1, A2, B1, B2, C1</li>
-                                </ul>
-                            </div>
-                            <div class="block__price">6 000 грн</div>
-                            <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
-                        </div>
-
-
-                        <div class="block1_2">
-                            <div class="block__title">Інтенсив</div>
-                            <div class="block__text">
-                                <ul>
-                                    <li> 30 індивідуальних занять</li>
-                                    <li> 10 годин розмов з носіями мови</li>
-                                    <li> 1,5 місяця навчання</li>
-                                    <li> індивідульний план навчання</li>
-                                    <li> рівні А1, A2, B1</li>
-                                </ul>
-                            </div>
-                            <div class="block__price">25 000 грн</div>
-                            <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
-                        </div>
-
-
+                <div class="block1_2">
+                    <div class="block__title">Інтенсив</div>
+                    <div class="block__text">
+                        <ul>
+                            <li> 30 індивідуальних занять</li>
+                            <li> 10 годин розмов з носіями мови</li>
+                            <li> 1,5 місяця навчання</li>
+                            <li> індивідульний план навчання</li>
+                            <li> рівні А1, A2, B1</li>
+                        </ul>
                     </div>
-
-
-                    <div class="curses_block2">
-
-                        <div class="plane_img">
-                            <img src="{% static 'img/paper-plane.png' %}" alt="plane">
-                        </div>
-
-                        <div class="block1_3">
-                            <div class="block__title">Персональний</div>
-                            <div class="block__text">
-                                <ul>
-                                    <li> 30 індивідуальних занять</li>
-                                    <li> 10 годин розмов з носіями мови</li>
-                                    <li> 1,5-3 місяці навчання</li>
-                                    <li> індивідульний план навчання</li>
-                                    <li> рівні А1, A2, B1, B2, C1</li>
-                                </ul>
-                            </div>
-                            <div class="block__price">20 000 грн</div>
-                            <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
-                        </div>
-
-                    </div>
-
-
-
-
+                    <div class="block__price">25 000 грн</div>
+                    <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
                 </div>
-
 
 
             </div>
 
 
+            <div class="curses_block2">
 
-            <div class="curses__part3">
-                <div class="subtitle2">Французька мова</div>
-
-                <div class="curses_block">
-
-                    <div class="curses_block1">
-
-                        <div class="block2_1">
-
-                            <div class="block__title">Стандарт</div>
-                            <div class="block__text">
-                                <ul>
-                                    <li> 24 заняття в групі</li>
-                                    <li> 4 години розмов з носіями мови</li>
-                                    <li> 3 місяці</li>
-                                    <li> вибір зручного розкладу</li>
-                                    <li> рівні А1, A2, B1, B2, C1</li>
-                                </ul>
-                            </div>
-                            <div class="block__price">8 000 грн</div>
-                            <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
-
-                        </div>
-
-                        <div class="block2_3">
-                            <div class="block__title">Інтенсив</div>
-                            <div class="block__text">
-                                <ul>
-                                    <li> 30 індивідуальних занять</li>
-                                    <li> 10 годин розмов з носіями мови</li>
-                                    <li> 1,5 місяця навчання</li>
-                                    <li> індивідульний план навчання</li>
-                                    <li> рівні А1, A2, B1</li>
-                                </ul>
-                            </div>
-                            <div class="block__price">30 000 грн</div>
-                            <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
-                        </div>
-
-
-                    </div>
-
-
-
-
-                    <div class="curses_block2">
-
-                        <div class="plane_img"><img src="{% static 'img/paper-plane.png' %}" alt="plane"></div>
-
-                        <div class="block2_2">
-                            <div class="block__title">Персональний</div>
-                            <div class="block__text">
-                                <ul>
-                                    <li> 30 індивідуальних занять</li>
-                                    <li> 10 годин розмов з носіями мови</li>
-                                    <li> 1,5-3 місяці навчання</li>
-                                    <li> індивідульний план навчання</li>
-                                    <li> рівні А1, A2, B1, B2, C1</li>
-                                </ul>
-                            </div>
-                            <div class="block__price">23 000 грн</div>
-                            <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
-                        </div>
-
-                    </div>
+                <div class="plane_img">
+                    <img src="{% static 'img/paper-plane.png' %}" alt="plane">
                 </div>
 
-
-
-
-
-
-
-
-
-                <div class="curses__part4">
-                    <div class="subtitle3">Польська мова</div>
-
-
-                    <div class="curses_block">
-
-                        <div class="curses_block1">
-
-                            <div class="block3_1">
-
-                                <div class="block__title">Стандарт</div>
-                                <div class="block__text">
-                                    <ul>
-                                        <li> 24 заняття в групі</li>
-                                        <li> 4 години розмов з носіями мови</li>
-                                        <li> 3 місяці</li>
-                                        <li> вибір зручного розкладу</li>
-                                        <li> рівні А1, A2, B1, B2, C1</li>
-                                    </ul>
-                                </div>
-                                <div class="block__price">6 000 грн</div>
-                                <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
-
-                            </div>
-
-                            <div class="block3_3">
-                                <div class="block__title">Інтенсив</div>
-                                <div class="block__text">
-                                    <ul>
-                                        <li> 30 індивідуальних занять</li>
-                                        <li> 10 годин розмов з носіями мови</li>
-                                        <li> 1,5 місяця навчання</li>
-                                        <li> індивідульний план навчання</li>
-                                        <li> рівні А1, A2, B1</li>
-                                    </ul>
-                                </div>
-                                <div class="block__price">25 000 грн</div>
-                                <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
-                            </div>
-
-
-                        </div>
-
-                        <div class="curses_block2">
-
-                            <div class="plane_img"><img src="{% static 'img/paper-plane.png' %}" alt="plane"></div>
-
-                            <div class="block3_2">
-                                <div class="block__title">Персональний</div>
-                                <div class="block__text">
-                                    <ul>
-                                        <li> 30 індивідуальних занять</li>
-                                        <li> 10 годин розмов з носіями мови</li>
-                                        <li> 1,5-3 місяці навчання</li>
-                                        <li> індивідульний план навчання</li>
-                                        <li> рівні А1, A2, B1, B2, C1</li>
-                                    </ul>
-                                </div>
-                                <div class="block__price">15 000 грн</div>
-                                <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
-                            </div>
-
-                        </div>
+                <div class="block1_3">
+                    <div class="block__title">Персональний</div>
+                    <div class="block__text">
+                        <ul>
+                            <li> 30 індивідуальних занять</li>
+                            <li> 10 годин розмов з носіями мови</li>
+                            <li> 1,5-3 місяці навчання</li>
+                            <li> індивідульний план навчання</li>
+                            <li> рівні А1, A2, B1, B2, C1</li>
+                        </ul>
                     </div>
-
-
-
-
-
-
-
-
+                    <div class="block__price">20 000 грн</div>
+                    <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
                 </div>
-
-                <div class="curses__part5">
-
-                    <div class="subtitle1">Китайська мова</div>
-
-                    <div class="curses_block">
-                        <div class="curses_block1">
-                            <div class="block1_1">
-
-                                <div class="block__title">Стандарт</div>
-                                <div class="block__text">
-                                    <ul>
-                                        <li> 24 заняття в групі</li>
-                                        <li> 4 години розмов з носіями мови</li>
-                                        <li> 3 місяці</li>
-                                        <li> вибір зручного розкладу</li>
-                                        <li> рівні А1, A2, B1, B2, C1</li>
-                                    </ul>
-                                </div>
-                                <div class="block__price">6 000 грн</div>
-                                <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
-
-                            </div>
-
-                            <div class="block1_2">
-                                <div class="block__title">Інтенсив</div>
-                                <div class="block__text">
-                                    <ul>
-                                        <li> 30 індивідуальних занять</li>
-                                        <li> 10 годин розмов з носіями мови</li>
-                                        <li> 1,5 місяця навчання</li>
-                                        <li> індивідульний план навчання</li>
-                                        <li> рівні А1, A2, B1, В2</li>
-                                    </ul>
-                                </div>
-                                <div class="block__price">40 000 грн</div>
-                                <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
-                            </div>
-
-                        </div>
-                        <div class="curses_block2">
-
-                            <div class="plane_img"><img src="{% static 'img/paper-plane.png' %}" alt="plane"></div>
-
-                            <div class="block1_3">
-                                <div class="block__title">Персональний</div>
-                                <div class="block__text">
-                                    <ul>
-                                        <li> 30 індивідуальних занять</li>
-                                        <li> 10 годин розмов з носіями мови</li>
-                                        <li> 1,5-3 місяці навчання</li>
-                                        <li> індивідульний план навчання</li>
-                                        <li> рівні А1, A2, B1, B2, C1</li>
-                                    </ul>
-                                </div>
-                                <div class="block__price">30 000 грн</div>
-                                <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                </div>
-
-                <div class="curses__part6">
-                    <div class="subtitle2">Німецька мова</div>
-
-
-                    <div class="curses_block">
-                        <div class="curses_block1">
-                            <div class="block2_1">
-
-                                <div class="block__title">Стандарт</div>
-                                <div class="block__text">
-                                    <ul>
-                                        <li> 24 заняття в групі</li>
-                                        <li> 4 години розмов з носіями мови</li>
-                                        <li> 3 місяці</li>
-                                        <li> вибір зручного розкладу</li>
-                                        <li> рівні А1, A2, B1, B2, C1</li>
-                                    </ul>
-                                </div>
-                                <div class="block__price">6 000 грн</div>
-                                <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
-
-                            </div>
-                            <div class="block2_3">
-                                <div class="block__title">Інтенсив</div>
-                                <div class="block__text">
-                                    <ul>
-                                        <li> 30 індивідуальних занять</li>
-                                        <li> 10 годин розмов з носіями мови</li>
-                                        <li> 1,5 місяця навчання</li>
-                                        <li> індивідульний план навчання</li>
-                                        <li> рівні А1, A2, B1</li>
-                                    </ul>
-                                </div>
-                                <div class="block__price">25 000 грн</div>
-                                <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
-                            </div>
-
-                        </div>
-                        <div class="curses_block2">
-
-                            <div class="plane_img"><img src="{% static 'img/paper-plane.png' %}" alt="plane"></div>
-
-                            <div class="block2_2">
-                                <div class="block__title">Персональний</div>
-                                <div class="block__text">
-                                    <ul>
-                                        <li> 30 індивідуальних занять</li>
-                                        <li> 10 годин розмов з носіями мови</li>
-                                        <li> 1,5-3 місяці навчання</li>
-                                        <li> індивідульний план навчання</li>
-                                        <li> рівні А1, A2, B1, B2, C1</li>
-                                    </ul>
-                                </div>
-                                <div class="block__price">15 000 грн</div>
-                                <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-
-
-
-
-
-
-                <div class="curses__part7">
-                    <div class="logo"><img src="{% static 'img/Logo2.png' %}" alt="logo2"></div>
-                    <div class="networks">
-                        <div class="mail">
-                            <div class="mail_icon"><img src="{% static 'img/🦆 icon _email_.png' %}" alt="mail"></div>
-                            poliglot@gmail.com
-                        </div>
-                        <div class="tg">
-                            <div class="tg_icon"><img src="{% static 'img/icons8-telegram 1.png' %}" alt="tg"></div>
-                            poliglot.tg
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-
 
             </div>
+
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+    <div class="curses__part3">
+        <div class="subtitle2">Французька мова</div>
+
+        <div class="curses_block">
+
+            <div class="curses_block1">
+
+                <div class="block2_1">
+
+                    <div class="block__title">Стандарт</div>
+                    <div class="block__text">
+                        <ul>
+                            <li> 24 заняття в групі</li>
+                            <li> 4 години розмов з носіями мови</li>
+                            <li> 3 місяці</li>
+                            <li> вибір зручного розкладу</li>
+                            <li> рівні А1, A2, B1, B2, C1</li>
+                        </ul>
+                    </div>
+                    <div class="block__price">8 000 грн</div>
+                    <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
+
+                </div>
+
+                <div class="block2_3">
+                    <div class="block__title">Інтенсив</div>
+                    <div class="block__text">
+                        <ul>
+                            <li> 30 індивідуальних занять</li>
+                            <li> 10 годин розмов з носіями мови</li>
+                            <li> 1,5 місяця навчання</li>
+                            <li> індивідульний план навчання</li>
+                            <li> рівні А1, A2, B1</li>
+                        </ul>
+                    </div>
+                    <div class="block__price">30 000 грн</div>
+                    <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
+                </div>
+            </div>
+
+
+
+
+            <div class="curses_block2">
+
+                <div class="plane_img"><img src="{% static 'img/paper-plane.png' %}" alt="plane"></div>
+
+                <div class="block2_2">
+                    <div class="block__title">Персональний</div>
+                    <div class="block__text">
+                        <ul>
+                            <li> 30 індивідуальних занять</li>
+                            <li> 10 годин розмов з носіями мови</li>
+                            <li> 1,5-3 місяці навчання</li>
+                            <li> індивідульний план навчання</li>
+                            <li> рівні А1, A2, B1, B2, C1</li>
+                        </ul>
+                    </div>
+                    <div class="block__price">23 000 грн</div>
+                    <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="curses__part4">
+            <div class="subtitle3">Польська мова</div>
+
+
+            <div class="curses_block">
+
+                <div class="curses_block1">
+
+                    <div class="block3_1">
+
+                        <div class="block__title">Стандарт</div>
+                        <div class="block__text">
+                            <ul>
+                                <li> 24 заняття в групі</li>
+                                <li> 4 години розмов з носіями мови</li>
+                                <li> 3 місяці</li>
+                                <li> вибір зручного розкладу</li>
+                                <li> рівні А1, A2, B1, B2, C1</li>
+                            </ul>
+                        </div>
+                        <div class="block__price">6 000 грн</div>
+                        <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
+
+                    </div>
+
+                    <div class="block3_3">
+                        <div class="block__title">Інтенсив</div>
+                        <div class="block__text">
+                            <ul>
+                                <li> 30 індивідуальних занять</li>
+                                <li> 10 годин розмов з носіями мови</li>
+                                <li> 1,5 місяця навчання</li>
+                                <li> індивідульний план навчання</li>
+                                <li> рівні А1, A2, B1</li>
+                            </ul>
+                        </div>
+                        <div class="block__price">25 000 грн</div>
+                        <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
+                    </div>
+
+
+                </div>
+
+                <div class="curses_block2">
+
+                    <div class="plane_img"><img src="{% static 'img/paper-plane.png' %}" alt="plane"></div>
+
+                    <div class="block3_2">
+                        <div class="block__title">Персональний</div>
+                        <div class="block__text">
+                            <ul>
+                                <li> 30 індивідуальних занять</li>
+                                <li> 10 годин розмов з носіями мови</li>
+                                <li> 1,5-3 місяці навчання</li>
+                                <li> індивідульний план навчання</li>
+                                <li> рівні А1, A2, B1, B2, C1</li>
+                            </ul>
+                        </div>
+                        <div class="block__price">15 000 грн</div>
+                        <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+        </div>
+
+        <div class="curses__part5">
+
+            <div class="subtitle1">Китайська мова</div>
+
+            <div class="curses_block">
+                <div class="curses_block1">
+                    <div class="block1_1">
+
+                        <div class="block__title">Стандарт</div>
+                        <div class="block__text">
+                            <ul>
+                                <li> 24 заняття в групі</li>
+                                <li> 4 години розмов з носіями мови</li>
+                                <li> 3 місяці</li>
+                                <li> вибір зручного розкладу</li>
+                                <li> рівні А1, A2, B1, B2, C1</li>
+                            </ul>
+                        </div>
+                        <div class="block__price">6 000 грн</div>
+                        <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
+
+                    </div>
+
+                    <div class="block1_2">
+                        <div class="block__title">Інтенсив</div>
+                        <div class="block__text">
+                            <ul>
+                                <li> 30 індивідуальних занять</li>
+                                <li> 10 годин розмов з носіями мови</li>
+                                <li> 1,5 місяця навчання</li>
+                                <li> індивідульний план навчання</li>
+                                <li> рівні А1, A2, B1, В2</li>
+                            </ul>
+                        </div>
+                        <div class="block__price">40 000 грн</div>
+                        <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
+                    </div>
+
+                </div>
+                <div class="curses_block2">
+
+                    <div class="plane_img"><img src="{% static 'img/paper-plane.png' %}" alt="plane"></div>
+
+                    <div class="block1_3">
+                        <div class="block__title">Персональний</div>
+                        <div class="block__text">
+                            <ul>
+                                <li> 30 індивідуальних занять</li>
+                                <li> 10 годин розмов з носіями мови</li>
+                                <li> 1,5-3 місяці навчання</li>
+                                <li> індивідульний план навчання</li>
+                                <li> рівні А1, A2, B1, B2, C1</li>
+                            </ul>
+                        </div>
+                        <div class="block__price">30 000 грн</div>
+                        <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="curses__part6">
+            <div class="subtitle2">Німецька мова</div>
+
+
+            <div class="curses_block">
+                <div class="curses_block1">
+                    <div class="block2_1">
+
+                        <div class="block__title">Стандарт</div>
+                        <div class="block__text">
+                            <ul>
+                                <li> 24 заняття в групі</li>
+                                <li> 4 години розмов з носіями мови</li>
+                                <li> 3 місяці</li>
+                                <li> вибір зручного розкладу</li>
+                                <li> рівні А1, A2, B1, B2, C1</li>
+                            </ul>
+                        </div>
+                        <div class="block__price">6 000 грн</div>
+                        <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
+
+                    </div>
+                    <div class="block2_3">
+                        <div class="block__title">Інтенсив</div>
+                        <div class="block__text">
+                            <ul>
+                                <li> 30 індивідуальних занять</li>
+                                <li> 10 годин розмов з носіями мови</li>
+                                <li> 1,5 місяця навчання</li>
+                                <li> індивідульний план навчання</li>
+                                <li> рівні А1, A2, B1</li>
+                            </ul>
+                        </div>
+                        <div class="block__price">25 000 грн</div>
+                        <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
+                    </div>
+
+                </div>
+                <div class="curses_block2">
+
+                    <div class="plane_img"><img src="{% static 'img/paper-plane.png' %}" alt="plane"></div>
+
+                    <div class="block2_2">
+                        <div class="block__title">Персональний</div>
+                        <div class="block__text">
+                            <ul>
+                                <li> 30 індивідуальних занять</li>
+                                <li> 10 годин розмов з носіями мови</li>
+                                <li> 1,5-3 місяці навчання</li>
+                                <li> індивідульний план навчання</li>
+                                <li> рівні А1, A2, B1, B2, C1</li>
+                            </ul>
+                        </div>
+                        <div class="block__price">15 000 грн</div>
+                        <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+        <div class="curses__part7">
+            <div class="logo"><img src="{% static 'img/Logo2.png' %}" alt="logo2"></div>
+            <div class="networks">
+                <div class="mail">
+                    <div class="mail_icon"><img src="{% static 'img/🦆 icon _email_.png' %}" alt="mail"></div>
+                    poliglot@gmail.com
+                </div>
+                <div class="tg">
+                    <div class="tg_icon"><img src="{% static 'img/icons8-telegram 1.png' %}" alt="tg"></div>
+                    poliglot.tg
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
 </body>
 
 </html>
