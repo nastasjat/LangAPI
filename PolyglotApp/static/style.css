@@ -1051,6 +1051,8 @@ span.polyglot2 {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .popup-content {
@@ -1066,7 +1068,7 @@ span.polyglot2 {
     flex-direction: column;
     justify-content: space-around;
 
-
+    max-height: 80%;
 }
 
 .filter-option {
