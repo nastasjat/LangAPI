@@ -19,7 +19,6 @@
 </head>
 
 <body>
-
     <div class="curses__part1">
         <div class="logo_menue">
             <div class="logo"><img src="{% static 'img/logo1.png' %}" alt="logo1"></div>
@@ -35,75 +34,63 @@
             </div>
         </div>
 
-
         <div class="forma">
             <div class="forma__title">Записатися на курс</div>
             <div class="forma__main">
-                <div class="forma__name">
-                    <div class="text">Ім’я*</div>
-                    <div class="name_field">
-                        <input type="text" id="userInput" onkeydown="checkEnter(event)">
+                <form method="post" action="{% url 'index3' %}">
+                    {% csrf_token %}
+                    <div class="forma__name">
+                        <div class="text">Ім’я*</div>
+                        <div class="name_field">
+                            <input type="text" id="userInput" name="student_name" onkeydown="checkEnter(event)">
+                        </div>
                     </div>
-                </div>
 
-                <div class="forma__surname">
-                    <div class="text">Прізвище*</div>
-                    <div class="surname_field"><input type="text" id="userInput" onkeydown="checkEnter(event)"></div>
-                </div>
-
-                <div class="forma__phone">
-                    <div class="text">Номер телефону*</div>
-                    <div class="phone_field"><input type="text" id="userInput" onkeydown="checkEnter(event)"></div>
-                </div>
-
-                <div class="forma__email">
-                    <div class="text">Пошта</div>
-                    <div class="email_field"><input type="text" id="userInput" onkeydown="checkEnter(event)"></div>
-                </div>
-
-                <div class="forma__level">
-                    <div class="text">Як ви оцінюєте свій рівень володіння мовою?*</div>
-                    <div class="level_field">
-
-                        <select id="dropdown" onchange="updateField()">
-                            <option value="option1">А1 - (можу привітатися та представитися)</option>
-                            <option value="option2">A2 - (можу вести прості розмови на теми, що стосуються повсякденного
-                                життя)</option>
-                            <option value="option3">B1 - (можу висловлювати свої думки та давати короткі пояснення на
-                                різноманітні теми)</option>
-                            <option value="option4">B2 - (можу висловлювати ідеї та думки з високою чіткістю, а також
-                                взаємодіяти з носіями мови більш впевнено)</option>
-                            <option value="option5">C1 - (здатний висловлювати свої думки та детально обговорювати
-                                складні теми)</option>
-                        </select>
-
+                    <div class="forma__surname">
+                        <div class="text">Прізвище*</div>
+                        <div class="surname_field"><input type="text" name="student_surname" id="userInput"
+                                onkeydown="checkEnter(event)"></div>
                     </div>
-                </div>
 
-                <div class="forma_text">
-                    Наш менеджер зателефонує вам упродовж дня!
-                </div>
+                    <div class="forma__phone">
+                        <div class="text">Номер телефону*</div>
+                        <div class="phone_field"><input type="text" name="phone_number" id="userInput"
+                                onkeydown="checkEnter(event)"></div>
+                    </div>
 
-                <button>Записатися</button>
+                    <div class="forma__email">
+                        <div class="text">Пошта</div>
+                        <div class="email_field"><input type="text" name="email" id="userInput"
+                                onkeydown="checkEnter(event)"></div>
+                    </div>
 
+                    <div class="forma__level">
+                        <div class="text">Як ви оцінюєте свій рівень володіння мовою?*</div>
+                        <div class="level_field">
+
+                            <select id="dropdown" name="lang_level" onchange="updateField()">
+                                <option value="А1">А1 - (можу привітатися та представитися)</option>
+                                <option value="А2">A2 - (можу вести прості розмови на теми, що стосуються повсякденного
+                                    життя)</option>
+                                <option value="В1">B1 - (можу висловлювати свої думки та давати короткі пояснення на
+                                    різноманітні теми)</option>
+                                <option value="В2">B2 - (можу висловлювати ідеї та думки з високою чіткістю, а також
+                                    взаємодіяти з носіями мови більш впевнено)</option>
+                                <option value="С1">C1 - (здатний висловлювати свої думки та детально обговорювати
+                                    складні теми)</option>
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <div class="forma_text">
+                        Наш менеджер зателефонує вам упродовж дня!
+                    </div>
+
+                    <button type="submit">Записатися</button>
+                </form>
             </div>
-
-
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         <div class="curses__part7">
             <div class="logo"><img src="{% static 'img/Logo2.png' %}" alt="logo2"></div>
@@ -118,12 +105,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
-
     </div>
 </body>
 

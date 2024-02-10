@@ -1,3 +1,4 @@
+{% extends 'common_parts.html' %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,21 +21,7 @@
 </head>
 
 <body>
-    <div class="curses__part1">
-        <div class="logo_menue">
-            <div class="logo"><img src="{% static 'img/logo1.png' %}" alt="logo1"></div>
-            <div class="menu" onclick="toggleMenu()">
-                <img src="{% static 'img/menue.png' %}" alt="menue_icon" class="menu-icon">
-                <div class="dropdown-menu" id="dropdownMenu">
-                    <a href="{% url 'index' %}">Головна</a>
-                    <a href="{% url 'index' %}">Формула успіху</a>
-                    <a href="{% url 'index' %}">Викладачі</a>
-                    <a href="{% url 'index2' %}">Програми навчання</a>
-                    <a href="{% url 'index' %}">Поширені запитання</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    {% block specific_content %}
     <div class="curses__part2">
         <div class="title3">Доступні курси</div>
     </div>
@@ -46,7 +33,7 @@
                     {{ selected_language.name }} мова</div>
                 {% if courses %}
                 {% for course in courses %}
-                <div class="curses_block mt-1 mb-5">
+                <div class="curses_block mt-1 mb-0 pb-4">
                     <div class="block1_1 mt-0 mb-0">
                         <div class="block__title">{{ course.name }}</div>
                         <div class="block__text">
@@ -80,17 +67,5 @@
             {% endif %}
         </div>
     </div>
-    <div class="part6">
-        <div class="logo"><img src="{% static 'img/Logo2.png' %}" alt="logo2"></div>
-        <div class="networks">
-            <div class="mail">
-                <div class="mail_icon"><img src="{%  static 'img/🦆 icon _email_.png' %}" alt="mail"></div>
-                poliglot@gmail.com
-            </div>
-            <div class="tg">
-                <div class="tg_icon"><img src="{%  static 'img/icons8-telegram 1.png' %}" alt="tg"></div>
-                poliglot.tg
-            </div>
-        </div>
-    </div>
+    {% endblock %}
 </body>

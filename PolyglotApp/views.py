@@ -1,8 +1,7 @@
-from django.shortcuts import render
-from django.template.loader import render_to_string
+import json
+from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
-from django.http import HttpResponse
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.parsers import JSONParser
@@ -36,6 +35,40 @@ def index2(request):
 
 
 def index3(request):
+    if request.method == "POST":
+        # language_id = request.POST.get("language_id")
+        # course_name = request.POST.get("name")
+        # price = request.POST.get("price")
+        data = json.loads(request.body.decode("utf-8"))
+        language_id = data.get("language_id")
+        course_name = data.get("name")
+        price = data.get("price")
+
+        print(language_id, course_name, price)
+        # Extract form data
+        name = request.POST.get("student_name")
+        surname = request.POST.get("student_surname")
+        phone_number = request.POST.get("phone_number")
+        email = request.POST.get("email")
+        language_level = request.POST.get("lang_level")
+
+        # Create Student instance and save to the database
+        student = Student.objects.create(
+            name=name, surname=surname, phone_number=phone_number, email=email
+        )
+
+        # Find the Course based on the provided parameters
+        course = Course.objects.get(name=course_name, price=price, level=language_level)
+
+        # Create Enrolment instance and link it with Student and Course
+        enrolment = Enrolment.objects.create(
+            student=student,
+            course=course,
+            language=language_id,  # Use the constant language_id
+        )
+
+        return redirect("success_page")  # Redirect to a success page
+
     return render(request, "index3.html")
 
 

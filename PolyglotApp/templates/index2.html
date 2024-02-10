@@ -36,7 +36,6 @@
                 </div>
             </div>
 
-
             <div class="curses__part2">
                 <div class="title3">Доступні курси</div>
 
@@ -46,7 +45,6 @@
                     <form method="post" action="{% url 'filtered_courses' %}">
                         {% csrf_token %}
                         <div class="popup-content">
-                            <!-- Ваші блоки для вікна -->
                             <div class="filter-option">
                                 <div class="filter_title">Ціна</div>
                                 <div class="filter_main1">
@@ -78,7 +76,7 @@
                                             <input type="radio" name="level" value="A1"> A1
                                         </label>
                                         <label class="lbl2">
-                                            <input type="radio" name="level" value="A2"> A2
+                                            <input type="radio" name="level" value="А2"> A2
                                         </label>
                                         <label class="lbl2">
                                             <input type="radio" name="level" value="В1"> В1
@@ -91,9 +89,6 @@
                                         </label>
 
                                     </form>
-
-
-
                                 </div>
                     </form>
                 </div>
@@ -109,7 +104,6 @@
         <div class="curses_block">
 
             <div class="curses_block1">
-
                 <div class="block1_1">
 
                     <div class="block__title">Стандарт</div>
@@ -123,8 +117,12 @@
                         </ul>
                     </div>
                     <div class="block__price">6 000 грн</div>
-                    <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
+                    <div class="block__button" onclick="submitData(this)" data-language-id="1"
+                        data-course-name="Стандарт" data-price="6000">
+                        <a href="{% url 'index3' %}">Записатися</a>
+                    </div>
                 </div>
+
 
 
                 <div class="block1_2">
@@ -338,14 +336,14 @@
                         <div class="block__title">Стандарт</div>
                         <div class="block__text">
                             <ul>
-                                <li> 24 заняття в групі</li>
+                                <li> 40 занять в групі</li>
                                 <li> 4 години розмов з носіями мови</li>
                                 <li> 3 місяці</li>
                                 <li> вибір зручного розкладу</li>
-                                <li> рівні А1, A2, B1, B2, C1</li>
+                                <li> рівні А1, A2, B1, B2</li>
                             </ul>
                         </div>
-                        <div class="block__price">6 000 грн</div>
+                        <div class="block__price">15 000 грн</div>
                         <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
 
                     </div>
@@ -354,9 +352,9 @@
                         <div class="block__title">Інтенсив</div>
                         <div class="block__text">
                             <ul>
-                                <li> 30 індивідуальних занять</li>
+                                <li> 96 індивідуальних занять</li>
                                 <li> 10 годин розмов з носіями мови</li>
-                                <li> 1,5 місяця навчання</li>
+                                <li> 6 місяців навчання</li>
                                 <li> індивідульний план навчання</li>
                                 <li> рівні А1, A2, B1, В2</li>
                             </ul>
@@ -374,9 +372,9 @@
                         <div class="block__title">Персональний</div>
                         <div class="block__text">
                             <ul>
-                                <li> 30 індивідуальних занять</li>
+                                <li> 60 індивідуальних занять</li>
                                 <li> 10 годин розмов з носіями мови</li>
-                                <li> 1,5-3 місяці навчання</li>
+                                <li> 6-8 місяців навчання</li>
                                 <li> індивідульний план навчання</li>
                                 <li> рівні А1, A2, B1, B2, C1</li>
                             </ul>

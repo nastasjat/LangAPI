@@ -40,7 +40,6 @@ function updateField() {
 }
 
 
-
 function checkEnter(event) {
   if (event.key === "Enter") {
       saveText();
@@ -76,7 +75,7 @@ function filterCourses() {
 
     // Send AJAX request
     $.ajax({
-        url: "/filtered_courses/",  // Update with your actual URL
+        url: "/filtered_courses/",  
         type: "POST",
         data: {
             language: language,
@@ -93,4 +92,32 @@ function filterCourses() {
             alert("Error occurred during filtering.");
         },
     });
+}
+
+function submitData(clickedBlock) {
+  var languageId = clickedBlock.getAttribute('data-language-id');
+  var courseName = clickedBlock.getAttribute('data-course-name');
+  var price = clickedBlock.getAttribute('data-price');
+
+  $.ajax({
+    url: "/index3/",
+    type: "POST",
+    contentType: "application/json; charset=utf-8",  // Add this line
+    dataType: "json",  
+    data: JSON.stringify({
+      language_id: languageId,
+      name: courseName,
+      price: price,
+    }),
+    success: function(response) {
+      console.log(response);
+      // Handle success, e.g., redirect to another page
+      window.location.href = '{% url "your_redirect_url" %}';
+    },
+    error: function(xhr, status, error) {
+      console.error('Error:', error);
+      // Handle error, e.g., display an alert to the user
+      alert('Failed to submit data. Please try again.');
+    }
+  });
 }
