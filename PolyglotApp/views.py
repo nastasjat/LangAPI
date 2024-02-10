@@ -1,5 +1,5 @@
 import json
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -34,23 +34,36 @@ def index2(request):
     return render(request, "index2.html")
 
 
-def index3(request):
+def submit_course_data(request):
     if request.method == "POST":
-        # language_id = request.POST.get("language_id")
-        # course_name = request.POST.get("name")
-        # price = request.POST.get("price")
         data = json.loads(request.body.decode("utf-8"))
-        language_id = data.get("language_id")
+        language = data.get("language")
         course_name = data.get("name")
         price = data.get("price")
 
-        print(language_id, course_name, price)
-        # Extract form data
+        # You can save these values to the session for later retrieval
+        request.session["language"] = language
+        request.session["course_name"] = course_name
+        request.session["price"] = price
+
+        return JsonResponse({"success": True})
+    else:
+        return JsonResponse({"success": False})
+
+
+def index3(request):
+    if request.method == "POST":
+        # Extract form data from POST parameters
         name = request.POST.get("student_name")
         surname = request.POST.get("student_surname")
         phone_number = request.POST.get("phone_number")
         email = request.POST.get("email")
         language_level = request.POST.get("lang_level")
+
+        # Retrieve course data from the session
+        language_name = request.session.get("language")
+        course_name = request.session.get("course_name")
+        price = request.session.get("price")
 
         # Create Student instance and save to the database
         student = Student.objects.create(
@@ -59,15 +72,19 @@ def index3(request):
 
         # Find the Course based on the provided parameters
         course = Course.objects.get(name=course_name, price=price, level=language_level)
+        language = Language.objects.get(name=language_name)
 
         # Create Enrolment instance and link it with Student and Course
         enrolment = Enrolment.objects.create(
             student=student,
             course=course,
-            language=language_id,  # Use the constant language_id
+            language=language,
         )
 
-        return redirect("success_page")  # Redirect to a success page
+        # Clear session data after processing
+        del request.session["language"]
+        del request.session["course_name"]
+        del request.session["price"]
 
     return render(request, "index3.html")
 
@@ -82,6 +99,7 @@ def get_hours_text(num_hours):
         return "годин"
 
 
+# Filter courses function
 def filtered_courses(request):
     if request.method == "POST":
         language = request.POST.get("language")

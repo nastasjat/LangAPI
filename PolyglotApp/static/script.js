@@ -94,25 +94,31 @@ function filterCourses() {
     });
 }
 
-function submitData(clickedBlock) {
-  var languageId = clickedBlock.getAttribute('data-language-id');
+function submitData(clickedBlock, event) {
+  // Prevent the default behavior of the anchor tag
+  event.preventDefault();
+  
+  var languageName = clickedBlock.getAttribute('data-language');
   var courseName = clickedBlock.getAttribute('data-course-name');
   var price = clickedBlock.getAttribute('data-price');
 
   $.ajax({
-    url: "/index3/",
+    url: "/submit_course_data/",
     type: "POST",
     contentType: "application/json; charset=utf-8",  // Add this line
     dataType: "json",  
     data: JSON.stringify({
-      language_id: languageId,
+      language: languageName,
       name: courseName,
       price: price,
     }),
+     headers: {
+        "X-CSRFToken": $("input[name='csrfmiddlewaretoken']").val()
+    },
     success: function(response) {
       console.log(response);
       // Handle success, e.g., redirect to another page
-      window.location.href = '{% url "your_redirect_url" %}';
+      window.location.href = "/index3/";
     },
     error: function(xhr, status, error) {
       console.error('Error:', error);
@@ -121,3 +127,4 @@ function submitData(clickedBlock) {
     }
   });
 }
+

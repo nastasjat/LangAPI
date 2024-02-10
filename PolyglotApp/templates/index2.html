@@ -10,7 +10,7 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- Підключення Bootstrap з CDN -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="{% static 'script.js' %}"></script>
@@ -105,7 +105,7 @@
 
             <div class="curses_block1">
                 <div class="block1_1">
-
+                    {% csrf_token %}
                     <div class="block__title">Стандарт</div>
                     <div class="block__text">
                         <ul>
@@ -117,15 +117,14 @@
                         </ul>
                     </div>
                     <div class="block__price">6 000 грн</div>
-                    <div class="block__button" onclick="submitData(this)" data-language-id="1"
+                    <div class="block__button" onclick="submitData(this, event)" data-language="Англійська"
                         data-course-name="Стандарт" data-price="6000">
                         <a href="{% url 'index3' %}">Записатися</a>
                     </div>
                 </div>
 
-
-
                 <div class="block1_2">
+                    {% csrf_token %}
                     <div class="block__title">Інтенсив</div>
                     <div class="block__text">
                         <ul>
@@ -137,12 +136,12 @@
                         </ul>
                     </div>
                     <div class="block__price">25 000 грн</div>
-                    <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
+                    <div class="block__button" onclick="submitData(this, event)" data-language="Англійська"
+                        data-course-name="Інтенсив" data-price="25000">
+                        <a href="{% url 'index3' %}">Записатися</a>
+                    </div>
                 </div>
-
-
             </div>
-
 
             <div class="curses_block2">
 
@@ -151,6 +150,7 @@
                 </div>
 
                 <div class="block1_3">
+                    {% csrf_token %}
                     <div class="block__title">Персональний</div>
                     <div class="block__text">
                         <ul>
@@ -162,18 +162,13 @@
                         </ul>
                     </div>
                     <div class="block__price">20 000 грн</div>
-                    <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
+                    <div class="block__button" onclick="submitData(this, event)" data-language="Англійська"
+                        data-course-name="Персональний" data-price="20000">
+                        <a href="{% url 'index3' %}">Записатися</a>
+                    </div>
                 </div>
-
             </div>
-
-
-
-
         </div>
-
-
-
     </div>
 
 
@@ -186,7 +181,7 @@
             <div class="curses_block1">
 
                 <div class="block2_1">
-
+                    {% csrf_token %}
                     <div class="block__title">Стандарт</div>
                     <div class="block__text">
                         <ul>
@@ -198,11 +193,15 @@
                         </ul>
                     </div>
                     <div class="block__price">8 000 грн</div>
-                    <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
+                    <div class="block__button" onclick="submitData(this, event)" data-language="Французька"
+                        data-course-name="Стандарт" data-price="8000">
+                        <a href="{% url 'index3' %}">Записатися</a>
+                    </div>
 
                 </div>
 
                 <div class="block2_3">
+                    {% csrf_token %}
                     <div class="block__title">Інтенсив</div>
                     <div class="block__text">
                         <ul>
@@ -214,18 +213,19 @@
                         </ul>
                     </div>
                     <div class="block__price">30 000 грн</div>
-                    <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
+                    <div class="block__button" onclick="submitData(this, event)" data-language="Французька"
+                        data-course-name="Інтенсив" data-price="30000">
+                        <a href="{% url 'index3' %}">Записатися</a>
+                    </div>
                 </div>
             </div>
-
-
-
 
             <div class="curses_block2">
 
                 <div class="plane_img"><img src="{% static 'img/paper-plane.png' %}" alt="plane"></div>
 
                 <div class="block2_2">
+                    {% csrf_token %}
                     <div class="block__title">Персональний</div>
                     <div class="block__text">
                         <ul>
@@ -237,19 +237,14 @@
                         </ul>
                     </div>
                     <div class="block__price">23 000 грн</div>
-                    <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
+                    <div class="block__button" onclick="submitData(this, event)" data-language="Французька"
+                        data-course-name="Персональний" data-price="23000">
+                        <a href="{% url 'index3' %}">Записатися</a>
+                    </div>
                 </div>
 
             </div>
         </div>
-
-
-
-
-
-
-
-
 
         <div class="curses__part4">
             <div class="subtitle3">Польська мова</div>
@@ -260,7 +255,7 @@
                 <div class="curses_block1">
 
                     <div class="block3_1">
-
+                        {% csrf_token %}
                         <div class="block__title">Стандарт</div>
                         <div class="block__text">
                             <ul>
@@ -272,11 +267,15 @@
                             </ul>
                         </div>
                         <div class="block__price">6 000 грн</div>
-                        <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
+                        <div class="block__button" onclick="submitData(this, event)" data-language="Польська"
+                            data-course-name="Стандарт" data-price="6000">
+                            <a href="{% url 'index3' %}">Записатися</a>
+                        </div>
 
                     </div>
 
                     <div class="block3_3">
+                        {% csrf_token %}
                         <div class="block__title">Інтенсив</div>
                         <div class="block__text">
                             <ul>
@@ -288,7 +287,9 @@
                             </ul>
                         </div>
                         <div class="block__price">25 000 грн</div>
-                        <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
+                        <div class="block__button" onclick="submitData(this, event)" data-language="Польська"
+                            data-course-name="Інтенсив" data-price="25000"><a href="{% url 'index3' %}">Записатися</a>
+                        </div>
                     </div>
 
 
@@ -299,6 +300,7 @@
                     <div class="plane_img"><img src="{% static 'img/paper-plane.png' %}" alt="plane"></div>
 
                     <div class="block3_2">
+                        {% csrf_token %}
                         <div class="block__title">Персональний</div>
                         <div class="block__text">
                             <ul>
@@ -310,19 +312,14 @@
                             </ul>
                         </div>
                         <div class="block__price">15 000 грн</div>
-                        <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
+                        <div class="block__button" onclick="submitData(this, event)" data-language="Польська"
+                            data-course-name="Персональний" data-price="15000">
+                            <a href="{% url 'index3' %}">Записатися</a>
+                        </div>
                     </div>
 
                 </div>
             </div>
-
-
-
-
-
-
-
-
         </div>
 
         <div class="curses__part5">
@@ -332,7 +329,7 @@
             <div class="curses_block">
                 <div class="curses_block1">
                     <div class="block1_1">
-
+                        {% csrf_token %}
                         <div class="block__title">Стандарт</div>
                         <div class="block__text">
                             <ul>
@@ -344,11 +341,15 @@
                             </ul>
                         </div>
                         <div class="block__price">15 000 грн</div>
-                        <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
+                        <div class="block__button" onclick="submitData(this, event)" data-language="Китайська"
+                            data-course-name="Стандарт" data-price="15000">
+                            <a href="{% url 'index3' %}">Записатися</a>
+                        </div>
 
                     </div>
 
                     <div class="block1_2">
+                        {% csrf_token %}
                         <div class="block__title">Інтенсив</div>
                         <div class="block__text">
                             <ul>
@@ -360,7 +361,10 @@
                             </ul>
                         </div>
                         <div class="block__price">40 000 грн</div>
-                        <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
+                        <div class="block__button" onclick="submitData(this, event)" data-language="Китайська"
+                            data-course-name="Інтенсив" data-price="40000">
+                            <a href="{% url 'index3' %}">Записатися</a>
+                        </div>
                     </div>
 
                 </div>
@@ -369,6 +373,7 @@
                     <div class="plane_img"><img src="{% static 'img/paper-plane.png' %}" alt="plane"></div>
 
                     <div class="block1_3">
+                        {% csrf_token %}
                         <div class="block__title">Персональний</div>
                         <div class="block__text">
                             <ul>
@@ -380,13 +385,13 @@
                             </ul>
                         </div>
                         <div class="block__price">30 000 грн</div>
-                        <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
+                        <div class="block__button" onclick="submitData(this, event)" data-language="Китайська"
+                            data-course-name="Персональний" data-price="30000">
+                            <a href="{% url 'index3' %}">Записатися</a>
+                        </div>
                     </div>
                 </div>
             </div>
-
-
-
         </div>
 
         <div class="curses__part6">
@@ -396,7 +401,7 @@
             <div class="curses_block">
                 <div class="curses_block1">
                     <div class="block2_1">
-
+                        {% csrf_token %}
                         <div class="block__title">Стандарт</div>
                         <div class="block__text">
                             <ul>
@@ -408,10 +413,14 @@
                             </ul>
                         </div>
                         <div class="block__price">6 000 грн</div>
-                        <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
+                        <div class="block__button" onclick="submitData(this, event)" data-language="Німецька"
+                            data-course-name="Стандарт" data-price="6000">
+                            <a href="{% url 'index3' %}">Записатися</a>
+                        </div>
 
                     </div>
                     <div class="block2_3">
+                        {% csrf_token %}
                         <div class="block__title">Інтенсив</div>
                         <div class="block__text">
                             <ul>
@@ -423,7 +432,10 @@
                             </ul>
                         </div>
                         <div class="block__price">25 000 грн</div>
-                        <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
+                        <div class="block__button" onclick="submitData(this, event)" data-language="Німецька"
+                            data-course-name="Інтенсив" data-price="25000">
+                            <a href="{% url 'index3' %}">Записатися</a>
+                        </div>
                     </div>
 
                 </div>
@@ -432,6 +444,7 @@
                     <div class="plane_img"><img src="{% static 'img/paper-plane.png' %}" alt="plane"></div>
 
                     <div class="block2_2">
+                        {% csrf_token %}
                         <div class="block__title">Персональний</div>
                         <div class="block__text">
                             <ul>
@@ -443,18 +456,16 @@
                             </ul>
                         </div>
                         <div class="block__price">15 000 грн</div>
-                        <div class="block__button"><a href="{% url 'index3' %}">Записатися</a></div>
+                        <div class="block__button" onclick="submitData(this, event)" data-language="Німецька"
+                            data-course-name="Персональний" data-price="15000">
+                            <a href="{% url 'index3' %}">Записатися</a>
+                        </div>
                     </div>
 
                 </div>
             </div>
 
         </div>
-
-
-
-
-
 
         <div class="curses__part7">
             <div class="logo"><img src="{% static 'img/Logo2.png' %}" alt="logo2"></div>
@@ -469,12 +480,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
-
     </div>
 </body>
 

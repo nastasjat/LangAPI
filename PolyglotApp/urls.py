@@ -4,6 +4,7 @@ from PolyglotApp import views
 
 urlpatterns = [
     path("filtered_courses/", views.filtered_courses, name="filtered_courses"),
+    path("submit_course_data/", views.submit_course_data, name="submit_course_data"),
     path("", views.index, name="index"),
     path("index2/", views.index2, name="index2"),
     path("index3/", views.index3, name="index3"),
